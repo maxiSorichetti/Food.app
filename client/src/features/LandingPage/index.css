@@ -1,0 +1,12 @@
+.containerLanding {
+  color: white;
+  text-align: center;
+  background-image: url(,,/../../img/food-with-ingredients.jpg);
+  /* background-size:contain; */
+         /* background-size: 25px 50px; */
+  background-size: 100% 100%;
+  /* background-image: url(./img/WhatsApp\ Image\ 2022-02-08\ at\ 19.05.23.jpeg); */
+  height: 100vh;
+  width: 100vw;
+}
+
