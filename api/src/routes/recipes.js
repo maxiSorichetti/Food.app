@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Recipe} = require('../db')
+const {Recipe, Diet} = require('../db')
 const getAllData = require('./functions.js')
 
 //GET QUERY 
@@ -57,20 +57,64 @@ router.get('/:id', async (req, res) => {
 //   }
 // })
 
-router.post('/', (req, res) => {
-  const {name, summary, spoonacularScore, healthScore, analyzedInstructions} = req.body;
-  Recipe.create({
-    name, summary, spoonacularScore, healthScore, analyzedInstructions
-  }).then(recipe => {
-    res.status(200).json(recipe);
-  }).catch(err => {
-    res.status(404).json({err: err});
-  })
-});
+//prueba de otro
+// router.post('/', async function(req, res, next){
 
-// router.post('/recipes', async (req, res) => {
+//   var {name, summary, spoonacularScore, healthScore, analyzedInstructions, diet} = req.body
+//     if (!name) return res.status(400).send({error: 'Debe ingresar un titulo'})
+//     if (!summary) return res.status(400).send({error: 'Debe ingresar un resumen del plato'})
+//     //steps = steps.join('|')
+//     try{
+
+//       const recipe = await Recipe.create({ name, summary, spoonacularScore, healthScore, analyzedInstructions });
+//       await recipe.setDiets(diet)
+//       // return res.send(recipe);z
+//       return res.send(recipe)
+//     }catch(err){
+//     res.status(404).json({err:err});
+//   }
+// })
+
+router.post('/create', async (req, res) => {
+  let {name, summary, spoonacularScore, healthScore, analyzedInstructions, diet} = req.body;
+  // let info = req.body
+  // console.log('req.body', req.body)
+  // console.log('aca clo hacemos post')
+  // res.json(info)
+  try{
+    console.log('entre a try')
+    let recipeCreated = await Recipe.create({ name, summary, spoonacularScore, healthScore, analyzedInstructions })
+    // let recipesDb = await Diet.findAll({
+    //   //al cargar varias dietas crea el arreglo
+    //   where: {name: diet}
+    // })
+    // //add lo uso porque ya tengo la relacion hecha
+    // console.log('recipesDb', recipesDb)
+    // recipeCreated.addDiet(recipesDb)
+    console.log('recipeCreated', recipeCreated)
+    return res.status(200).json(recipeCreated)
+  } catch(err){
+    console.log('err', err)
+    return res.status(404).json({err:err});
+  }
+})
+
+//falto diets
+// router.post('/create', (req, res) => {
+//   const {name, summary, spoonacularScore, healthScore, analyzedInstructions} = req.body;
+//   Recipe.create({
+//     name, summary, spoonacularScore, healthScore, analyzedInstructions
+//   }).then(recipe => {
+//     res.status(200).json(recipe);
+//   }).catch(err => {
+//     res.status(404).json({err: err});
+//   })
+// });
+
+// router.post('/create', async (req, res) => {
 //   const {name, summary, spoonacularScore, healthScore, analyzedInstructions} = req.body;
 //   try{
+//     console.log('req.body', req.body)
 //     const newRecipes = await Recipe.create({
 //       name, summary, spoonacularScore, healthScore, analyzedInstructions
 //     });

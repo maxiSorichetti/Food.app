@@ -30,6 +30,7 @@ module.exports = (sequelize) => {
     //text o string para recibir array
     analyzedInstructions: {
       type: DataTypes.ARRAY(DataTypes.STRING),
+      // type: DataTypes.TEXT,   
       allowNull: true,
     }
   });

@@ -3,7 +3,7 @@ const {Diet, Recipe} = require('../db');
 
 const getInfoApi = async () => {
   //pasar la API KEY DE ENV
-  const infoApi = await axios.get('https://api.spoonacular.com/recipes/complexSearch?apiKey=84071c4e45bb4ac1af56cdf4efb05a60&number=5&addRecipeInformation=true');
+  const infoApi = await axios.get('https://api.spoonacular.com/recipes/complexSearch?apiKey=a162aa89dc9d482b83bdfb44573a3312&number=2&addRecipeInformation=true');
   // console.log('data getInfoApi 1111111', infoApi.data.results);
 
   const info = infoApi.data.results.map(r => {

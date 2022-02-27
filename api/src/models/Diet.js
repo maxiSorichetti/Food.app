@@ -6,7 +6,8 @@ module.exports = (sequelize) => {
 
 sequelize.define('diet', {
     name: {
-      type: DataTypes.STRING,
+      // type: DataTypes.STRING,
+      type: DataTypes.ARRAY(DataTypes.STRING),
       allowNull: true,
     }
   });
